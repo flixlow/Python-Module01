@@ -4,21 +4,21 @@ class Plant:
     def __init__(self, name, height, age):
         self.name = name
         self.height = height
-        self.plant_age = age
+        self.pl_age = age
         self.growth = 0
         self.day = 1
 
     def grow(self):
-        self.growth += self.height / self.plant_age
-        self.height += self.height / self.plant_age
+        self.growth += self.height / self.pl_age
+        self.height += self.height / self.pl_age
 
     def age(self):
-        self.plant_age += 1
+        self.pl_age += 1
         self.day += 1
 
     def get_info(self):
         print(f"=== Day {self.day} ===")
-        print(f"{self.name}: {round(self.height)}cm, {self.plant_age} days old")
+        print(f"{self.name}: {round(self.height)}cm, {self.pl_age} days old")
         if self.day >= 7:
             print(f"Growth this week: +{round(self.growth)}cm")
 

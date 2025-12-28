@@ -2,12 +2,12 @@
 
 class Plant:
     def __init__(self, name, height, age):
-        self.p_name = name
-        self.p_height = height
-        self.p_age = age
+        self.name = name
+        self.height = height
+        self.age = age
 
     def get_info(self):
-        print(f"{self.p_name}: {self.p_height}cm, {self.p_age} days old")
+        print(f"{self.name}: {self.height}cm, {self.age} days old")
 
 
 def ft_garden_data():
