@@ -10,31 +10,34 @@ class SecurePlant:
         if self.get_height() is not None and self.get_age() is not None:
             print(f"Plant created: {self.name}")
             print(f"Height updated: {self.get_height()} cm [OK]")
-            print(f"Age updated: {self.get_age()} days [OK]")
+            print(f"Age updated: {self.get_age()} days [OK]\n")
 
-    def get_height(self) -> int:
+    def get_height(self) -> None | int:
         return self.__height
 
-    def get_age(self) -> int:
+    def get_age(self) -> None | int:
         return self.__age
 
     def set_height(self, height_entry: int) -> None:
         if height_entry < 0:
-            print(f"Invalid operation attempted: height {height_entry}cm [REJECTED]")
-            print("Security: Negative height rejected")
+            print(f"Invalid operation attempted: height {height_entry}cm\
+[REJECTED]")
+            print("Security: Negative height rejected\n")
             return
         self.__height = height_entry
 
     def set_age(self, age_entry: int) -> None:
         if age_entry < 0:
-            print(f"Invalid operation attempted: age {age_entry} days [REJECTED]")
+            print(f"Invalid operation attempted: age {age_entry} days\
+[REJECTED]")
             print("Security: Negative age rejected")
             return
         self.__age = age_entry
 
 
 def main():
-    plant = SecurePlant("Rose", -10, -10)
+    plant = SecurePlant("Rose", 0, 0)
+    plant.set_height(-1)
 
 
 if __name__ == "__main__":
