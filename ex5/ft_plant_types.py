@@ -35,6 +35,7 @@ class Flower(Plant):
         self.bloom_status: bool = False
 
     def bloom(self) -> None:
+        """allow flower to bloom"""
         self.bloom_status = True
 
     def get_info(self) -> None:
