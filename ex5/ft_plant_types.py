@@ -29,13 +29,12 @@ class Tree(Plant):
 
 
 class Flower(Plant):
-    def __init__(self, name: str, height: int, age: int, color: str):
+    def __init__(self, name: str, height: int, age: int, color: str) -> None:
         super().__init__(name, height, age)
         self.color: str = color
         self.bloom_status: bool = False
 
     def bloom(self) -> None:
-        """allow flower to bloom"""
         self.bloom_status = True
 
     def get_info(self) -> None:
@@ -58,16 +57,22 @@ class Vegetable(Plant):
         print(f"{self.name} is rich in vitamin {self.nutritional_value}\n")
 
 
-def main():
+def main() -> None:
     print("=== Garden Plant Types ===")
-    flower = Flower("Rose", 25, 30, "red")
-    flower.get_info()
-    tree = Tree("Oak", 500, 1825, 50)
-    tree.get_info()
-    vegetable = Vegetable("Tomato", 80, 90, "summer", "C")
-    vegetable.get_info()
-    flower.bloom()
-    flower.get_info()
+    flower1: Flower = Flower("Rose", 25, 30, "red")
+    flower2: Flower = Flower("Sunflower", 120, 50, "yellow")
+    flower1.get_info()
+    flower2.get_info()
+    tree1: Tree = Tree("Oak", 500, 1825, 50)
+    tree2: Tree = Tree("Birch", 450, 160, 50)
+    tree1.get_info()
+    tree2.get_info()
+    vegetable1: Vegetable = Vegetable("Tomato", 80, 90, "summer", "C")
+    vegetable2: Vegetable = Vegetable("Carrot", 70, 90, "automn", "C")
+    vegetable1.get_info()
+    vegetable2.get_info()
+    flower1.bloom()
+    flower1.get_info()
 
 
 if __name__ == "__main__":
