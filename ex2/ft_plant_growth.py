@@ -1,35 +1,40 @@
 #!/usr/bin/env python3
 
 class Plant:
-    def __init__(self, name, height, age):
+    def __init__(self, name: str, height: int, age: int):
         self.name = name
         self.height = height
-        self.pl_age = age
+        self.plant_age = age
         self.growth = 0
-        self.day = 1
 
     def grow(self):
-        self.growth += self.height / self.pl_age
-        self.height += self.height / self.pl_age
+        self.growth += 1
+        self.height += 1
+        self.age()
 
     def age(self):
-        self.pl_age += 1
-        self.day += 1
+        self.plant_age += 1
 
-    def get_info(self):
-        print(f"=== Day {self.day} ===")
-        print(f"{self.name}: {round(self.height)}cm, {self.pl_age} days old")
-        if self.day >= 7:
-            print(f"Growth this week: +{round(self.growth)}cm")
+    def get_info(self) -> str:
+        return (
+            f"{self.name}: {self.height}cm, {self.plant_age} days old")
 
 
 def ft_plant_growth():
     plant1 = Plant("Rose", 25, 30)
-    plant1.get_info()
-    for day in range(6):
-        plant1.grow()
-        plant1.age()
-    plant1.get_info()
+    plant2 = Plant("Sunflower", 100, 45)
+    plant_list = [plant1, plant2]
+    print("=== Day 1 ===")
+    for plant in plant_list:
+        print(plant.get_info())
+    for day in range(7):
+        for plant in plant_list:
+            plant.grow()
+    print("=== Day 7 ===")
+    for plant in plant_list:
+        print(plant.get_info())
+    for plant in plant_list:
+        print(f"[{plant.name}] Growth this week: +{plant.growth}cm")
 
 
 def main():
@@ -38,6 +43,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-# plant2 = Plant("sunflower", 80, 45)
-# plant3 = Plant("cactus", 15, 120)
