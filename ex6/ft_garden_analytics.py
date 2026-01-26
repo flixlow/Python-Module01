@@ -25,16 +25,15 @@ class GardenManager:
             return total_plants, total_growth, plant_types
 
     @classmethod
-    def create_garden_network(cls, names):
+    def create_garden_network(cls) -> "GardenManager":
         garden_manager = cls()
-        for name in names:
-            garden_manager.add_garden(name)
         return garden_manager
 
     def add_garden(self, owner_name: str) -> None:
         if owner_name in self.gardens.keys():
             print(f"Error : {owner_name} already has a garden.")
-        self.gardens.update({owner_name: Garden(owner_name)})
+        else:
+            self.gardens.update({owner_name: Garden(owner_name)})
 
     @staticmethod
     def validate_height(height: int) -> bool:
@@ -68,13 +67,16 @@ class Garden:
         self.plants_list: list[Plant] = []
         self.total_growth: int = 0
 
-    def add_plant(self, name: str, height: int, color: str | None,
-                  prize: int | None) -> None:
+    def add_plant(self, name: str, height: int, color: str | None = None,
+                  prize: int | None = None) -> None:
+        if color is None and prize is not None:
+            print("PrizeFlower needs a color")
+            return
         if color is None:
             self.plants_list.append(Plant(name, height))
-        elif prize is None:
+        elif color is not None and prize is None:
             self.plants_list.append(FloweringPlant(name, height, color))
-        else:
+        elif color is not None and prize is not None:
             self.plants_list.append(PrizeFlower(name, height, color, prize))
         print(f"Added {name} to {self.owner_name}'s garden")
 
@@ -153,7 +155,7 @@ class PrizeFlower(FloweringPlant):
 
 def main():
     print("=== Garden Management System Demo ===")
-    manager = GardenManager()
+    manager = GardenManager.create_garden_network()
     manager.add_garden("Bob")
     manager.add_garden("Alice")
 
@@ -161,7 +163,7 @@ def main():
     alice_garden.add_plant("Oak Tree", 100, None, None)
     alice_garden.add_plant("Rose", 25, "red", None)
     alice_garden.add_plant("Sunflower", 50, "yellow", 10)
-
+    print()
     bob_garden = manager.gardens["Bob"]
     bob_garden.add_plant("Birch Tree", 200, None, None)
     bob_garden.add_plant("Poppy", 30, "red", None)
